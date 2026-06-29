@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="assets/favicon.png">
 <title>AAT Social Media 2026 — Project Board</title>
 <style>
   :root {
@@ -16,45 +15,38 @@
     --c-gratitude:#ec4899;--c-merch:#f59e0b;--c-fillin:#6b7280;
     --c-reminder:#f97316;--c-newsletter:#14b8a6;
     --pri-top:#ff3b30;--pri-high:#ff9500;--pri-mid:#34c759;--pri-chill:#8e8e93;
-    --col-ideas:#fafaf9;--col-todo:#f0f4ff;--col-prog:#fff8f0;
-    --col-wait:#faf0ff;--col-done:#f0fff4;
   }
   [data-theme="dark"]{
     --bg:#1c1c1e;--surface:#2c2c2e;--surface2:#3a3a3c;--border:#3a3a3c;
     --text:#f5f5f7;--text2:#aeaeb2;--text3:#636366;
     --shadow:0 2px 8px rgba(0,0,0,0.3);--shadow-lg:0 8px 32px rgba(0,0,0,0.5);
-    --col-ideas:#28282a;--col-todo:#262833;--col-prog:#2e2b26;
-    --col-wait:#2b2633;--col-done:#262e28;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',sans-serif;
     background:var(--bg);color:var(--text);min-height:100vh;
     transition:background .2s,color .2s;overflow-x:hidden;}
 
-  /* ── LOADING SCREEN ── */
+  /* LOADING */
   #loading{position:fixed;inset:0;z-index:1000;background:var(--bg);
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
-  #loading .logo img{height:56px;width:auto;display:block;}
-  .brand-logo{height:36px;width:auto;display:block;}
-  #loading .msg{font-size:14px;font-weight:600;color:var(--text2);}
   #loading .spinner{width:28px;height:28px;border:3px solid var(--border);
     border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;}
+  #loading .msg{font-size:14px;font-weight:600;color:var(--text2);}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* ── LIVE DOT ── */
+  /* LIVE DOT */
   .live-dot{width:7px;height:7px;border-radius:50%;background:#34c759;
     display:inline-block;margin-left:4px;animation:pulse 2s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
 
-  /* ── HEADER ── */
+  /* HEADER */
   .header{position:sticky;top:0;z-index:200;background:var(--surface);
     border-bottom:1px solid var(--border);padding:10px 16px 8px;
     backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
   .header-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-  .brand{display:flex;align-items:center;gap:8px;}
-  .brand-title{font-size:17px;font-weight:800;letter-spacing:-.5px;white-space:nowrap;}
+  .brand-title{font-size:17px;font-weight:800;letter-spacing:-.5px;}
   .brand-title em{font-style:normal;color:var(--c-inspire);}
-  .brand-sub{font-size:11px;color:var(--text3);font-weight:500;letter-spacing:.2px;}
+  .brand-sub{font-size:11px;color:var(--text3);font-weight:500;}
   .hrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
   .btn-icon{width:32px;height:32px;border:none;border-radius:8px;background:var(--surface2);
     color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;
@@ -78,10 +70,9 @@
     font-size:11px;font-weight:700;cursor:pointer;background:var(--surface2);
     color:var(--text2);transition:all .15s;white-space:nowrap;letter-spacing:.1px;}
   .pill.active{color:#fff;}
-  .pill[data-f="all"].active{background:var(--text);}
   .pill-divider{width:1px;height:18px;background:var(--border);flex-shrink:0;}
 
-  /* ── BOARD ── */
+  /* BOARD */
   .board-wrap{padding:12px 12px 60px;overflow-x:auto;}
   .board{display:flex;gap:10px;align-items:flex-start;min-width:max-content;}
   .column{border-radius:var(--radius);background:var(--surface);
@@ -105,13 +96,13 @@
     transition:all .15s;font-family:inherit;}
   .add-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,113,227,.04);}
 
-  /* ── MONTH GROUP ── */
+  /* MONTH GROUP */
   .month-group-label{font-size:10px;font-weight:800;color:var(--text3);
     letter-spacing:.6px;text-transform:uppercase;padding:8px 2px 4px;
     border-top:1px solid var(--border);margin-top:6px;}
   .month-group-label:first-child{border-top:none;margin-top:0;padding-top:4px;}
 
-  /* ── CARDS ── */
+  /* CARDS */
   .card{background:var(--surface);border:1px solid var(--border);
     border-radius:var(--radius-sm);padding:9px 9px 8px;margin-bottom:6px;
     cursor:grab;position:relative;transition:box-shadow .15s,transform .15s,opacity .15s;
@@ -124,9 +115,10 @@
   @keyframes stamp{0%{transform:scale(1)}40%{transform:scale(1.07) rotate(-1deg)}70%{transform:scale(.98)}100%{transform:scale(1)}}
   .card.done-card{opacity:.5;}
   .card.done-card .card-title{text-decoration:line-through;}
-  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:5px;margin-bottom:6px;}
-  .card-week{font-size:9px;font-weight:800;color:var(--text3);letter-spacing:.4px;text-transform:uppercase;margin-bottom:2px;}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:5px;margin-bottom:5px;}
+  .card-date{font-size:9px;font-weight:800;color:var(--text3);letter-spacing:.4px;margin-bottom:2px;}
   .card-title{font-size:12.5px;font-weight:600;line-height:1.35;flex:1;}
+  .card-hook{font-size:10.5px;color:var(--text2);line-height:1.3;margin-bottom:5px;font-style:italic;}
   .menu-btn{background:none;border:none;cursor:pointer;color:var(--text3);
     font-size:16px;padding:0 1px;border-radius:4px;line-height:1;
     transition:color .15s;flex-shrink:0;margin-top:-1px;}
@@ -144,7 +136,7 @@
   .due-soon{background:rgba(255,149,0,.1);color:#cc7a00;}
   .due-over{background:rgba(255,59,48,.1);color:var(--pri-top);}
 
-  /* ── CONTEXT MENU ── */
+  /* CONTEXT MENU */
   .ctx-menu{position:fixed;z-index:600;background:var(--surface);
     border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow-lg);
     padding:4px;min-width:158px;animation:pop .12s ease;}
@@ -155,14 +147,14 @@
   .ctx-item:hover{background:var(--surface2);}
   .ctx-item.danger{color:var(--pri-top);}
 
-  /* ── MODAL ── */
+  /* MODAL */
   .overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.32);
     backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
     display:flex;align-items:center;justify-content:center;padding:16px;
     animation:fadeIn .14s ease;}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
   .modal{background:var(--surface);border-radius:16px;box-shadow:var(--shadow-lg);
-    width:100%;max-width:500px;max-height:92vh;overflow-y:auto;
+    width:100%;max-width:540px;max-height:92vh;overflow-y:auto;
     animation:modalIn .2s cubic-bezier(.34,1.2,.64,1);}
   @keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
   .modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 0;}
@@ -171,17 +163,21 @@
     border-radius:50%;cursor:pointer;color:var(--text2);font-size:13px;
     display:flex;align-items:center;justify-content:center;transition:background .12s;}
   .modal-close:hover{background:var(--border);}
-  .modal-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px;}
+  .modal-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:11px;}
   .field{display:flex;flex-direction:column;gap:4px;}
-  .field label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;}
+  .field label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;}
   .field input,.field select,.field textarea{
     background:var(--surface2);border:1.5px solid var(--border);
-    border-radius:var(--radius-sm);color:var(--text);font-size:14px;
-    font-family:inherit;padding:8px 10px;outline:none;
+    border-radius:var(--radius-sm);color:var(--text);font-size:13px;
+    font-family:inherit;padding:7px 10px;outline:none;
     transition:border-color .15s;resize:none;}
   .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);}
-  .field textarea{min-height:80px;line-height:1.5;}
+  .field textarea{min-height:64px;line-height:1.5;}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .brief-section{background:rgba(0,113,227,.04);border:1px solid rgba(0,113,227,.1);
+    border-radius:var(--radius-sm);padding:10px 12px;display:flex;flex-direction:column;gap:9px;}
+  .brief-label{font-size:10px;font-weight:800;color:var(--accent);text-transform:uppercase;
+    letter-spacing:.6px;margin-bottom:2px;}
   .modal-ftr{display:flex;gap:7px;padding:0 16px 16px;flex-wrap:wrap;}
   .btn-save{flex:1;height:36px;padding:0 14px;background:var(--accent);color:#fff;
     border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;
@@ -200,7 +196,7 @@
     transition:background .15s;font-family:inherit;display:flex;align-items:center;gap:4px;}
   .btn-copy:hover{background:var(--border);}
 
-  /* ── TOAST + CONFETTI ── */
+  /* TOAST + CONFETTI */
   .hype{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(16px);
     background:var(--text);color:var(--bg);padding:9px 18px;border-radius:20px;
     font-size:13px;font-weight:800;z-index:800;opacity:0;pointer-events:none;
@@ -208,7 +204,7 @@
   .hype.show{opacity:1;transform:translateX(-50%) translateY(0);}
   #cc{position:fixed;inset:0;z-index:900;pointer-events:none;}
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media(max-width:860px){
     .board-wrap{padding:8px 8px 80px;overflow-x:hidden;}
     .board{flex-direction:column;min-width:unset;gap:7px;}
@@ -225,9 +221,8 @@
 </head>
 <body>
 
-<!-- Loading screen (hidden once Firebase connects) -->
 <div id="loading">
-  <div class="logo"><img src="assets/cropped-LOGO-.png" alt="Aiden's A-Team"></div>
+  <div style="font-size:32px">💜</div>
   <div class="spinner"></div>
   <div class="msg">Connecting to board…</div>
 </div>
@@ -235,12 +230,9 @@
 <div id="app" style="display:none">
   <div class="header">
     <div class="header-row1">
-      <div class="brand">
-        <img src="assets/cropped-LOGO-.png" alt="Aiden's A-Team" class="brand-logo">
-        <div>
-          <div class="brand-title"><em>Aiden's A-Team</em> — 2026 Board <span class="live-dot" title="Live sync on"></span></div>
-          <div class="brand-sub">@aidensateam24 · Social Calendar + Project Tracker</div>
-        </div>
+      <div>
+        <div class="brand-title">💜 <em>Aiden's A-Team</em> — 2026 Board <span class="live-dot" title="Live sync on"></span></div>
+        <div class="brand-sub">@aidensateam24 · Social Calendar + Project Tracker</div>
       </div>
       <div class="hrow">
         <div class="search-wrap">
@@ -253,7 +245,6 @@
     </div>
     <div class="filter-row" id="fp"></div>
   </div>
-
   <div class="board-wrap"><div class="board" id="board"></div></div>
 </div>
 
@@ -268,9 +259,10 @@
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
-      <div class="field"><label>Title</label><input type="text" id="ft" placeholder="What needs to get done?"></div>
+      <div class="field"><label>Title / Content Description</label>
+        <input type="text" id="ft" placeholder="What's the post about?"></div>
       <div class="frow">
-        <div class="field"><label>Post Type / Category</label>
+        <div class="field"><label>Post Type</label>
           <select id="fcat">
             <option value="Inspire">💜 Inspire</option>
             <option value="Educate">📘 Educate</option>
@@ -282,16 +274,6 @@
             <option value="Newsletter">📧 Newsletter</option>
           </select>
         </div>
-        <div class="field"><label>Priority</label>
-          <select id="fpri">
-            <option value="top">🔴 Top — Reel</option>
-            <option value="high">🟠 High — Carousel+</option>
-            <option value="mid" selected>🟢 Mid — Carousel</option>
-            <option value="chill">⚪️ Chill — Static/Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="frow">
         <div class="field"><label>Status</label>
           <select id="fst">
             <option value="ideas">💡 Ideas</option>
@@ -301,7 +283,6 @@
             <option value="complete">✅ Complete</option>
           </select>
         </div>
-        <div class="field"><label>Due Date</label><input type="date" id="fdue"></div>
       </div>
       <div class="frow">
         <div class="field"><label>Month</label>
@@ -313,16 +294,27 @@
             <option>OCTOBER</option><option>NOVEMBER</option><option>DECEMBER</option>
           </select>
         </div>
-        <div class="field"><label>Week</label><input type="text" id="fweek" placeholder="e.g. W1"></div>
+        <div class="field"><label>Due Date</label><input type="date" id="fdue"></div>
       </div>
-      <div class="field"><label>Hook / Format / CTA — Notes</label>
-        <textarea id="fnotes" placeholder="Hook type, format, CTA, audit flags, visual notes…"></textarea>
+
+      <!-- CONTENT BRIEF SECTION -->
+      <div class="brief-section">
+        <div class="brief-label">📋 Content Brief</div>
+        <div class="field"><label>Format</label>
+          <input type="text" id="fformat" placeholder="e.g. Reel, Carousel (5–7 slides), Static…"></div>
+        <div class="field"><label>Hook Type</label>
+          <input type="text" id="fhook" placeholder="Hook style and specific guidance…"></div>
+        <div class="field"><label>Recommended CTA</label>
+          <input type="text" id="fcta" placeholder="CTA copy or instruction…"></div>
+        <div class="field"><label>Audit / Production Notes</label>
+          <textarea id="faudit" placeholder="Shoot notes, format requirements, flags…"></textarea>
+        </div>
       </div>
     </div>
     <div class="modal-ftr">
       <button class="btn-save" id="msave" onclick="saveModal()">Save Task</button>
       <button class="btn-done" id="mdone" onclick="toggleDoneModal()" style="display:none">✅ Mark Complete</button>
-      <button class="btn-copy" onclick="copyForClaude()">📋 Copy for Claude</button>
+      <button class="btn-copy" onclick="copyForClaude()">📋 Copy Brief</button>
       <button class="btn-sec" onclick="closeModal()">Cancel</button>
     </div>
   </div>
@@ -337,7 +329,7 @@
 </div>
 
 <script type="module">
-// ── FIREBASE ─────────────────────────────────────
+// ── FIREBASE ──────────────────────────────────────
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
 
@@ -350,18 +342,17 @@ const firebaseConfig = {
   messagingSenderId: "273306546095",
   appId: "1:273306546095:web:732bee9bf40cd71b0dc95a"
 };
-
 const fbApp = initializeApp(firebaseConfig);
 const db = getDatabase(fbApp);
-const boardRef = ref(db, 'aat-board');
+const boardRef = ref(db, 'aat-board-v3'); // v3 = new data structure with separate brief fields
 
-// ── CONFIG ───────────────────────────────────────
+// ── CONFIG ────────────────────────────────────────
 const COLS=[
-  {id:'ideas',   label:'Ideas',       emoji:'💡'},
-  {id:'todo',    label:'To Do',       emoji:'📋'},
+  {id:'ideas',    label:'Ideas',       emoji:'💡'},
+  {id:'todo',     label:'To Do',       emoji:'📋'},
   {id:'inprogress',label:'In Progress',emoji:'🚧'},
-  {id:'waiting', label:'Waiting',     emoji:'⏸'},
-  {id:'complete',label:'Complete',    emoji:'✅'},
+  {id:'waiting',  label:'Waiting',     emoji:'⏸'},
+  {id:'complete', label:'Complete',    emoji:'✅'},
 ];
 const CATS={
   'Inspire':'#8b5cf6','Educate':'#3b82f6','Fundraise':'#10b981',
@@ -369,305 +360,303 @@ const CATS={
   'Reminder':'#f97316','Newsletter':'#14b8a6',
 };
 const PRI_ORD={top:1,high:2,mid:3,chill:4};
-const PRI_LBL={top:'Reel',high:'Carousel+',mid:'Carousel',chill:'Static/Other'};
+const PRI_LBL={top:'Reel',high:'Carousel 5–7',mid:'Carousel',chill:'Static/Other'};
 const MONTHS=['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
 const HYPES=['🔥 Crushed it!','💜 For Aiden!','⚡️ Keep going!','🏆 Let\'s go!','🚀 LFG!','✨ Nailed it!','💪 On a roll!','🎯 Bullseye!','🌟 Star move!','😤 Unstoppable!'];
 
-// ── SEED DATA ─────────────────────────────────────
+// ── SEED — exact data from Google Sheet (cols L–O) ──
+// Format: [month, date, type, title, format, hook, cta, audit]
 const SEED=[
-  ['JANUARY','01/05/2026','Inspire','2026 mission + Aiden moment','todo','top','New Year, New Hope (Momentum + Credibility)','Format: Reel\nHook: First-Person / Aiden speaks to camera\nCTA: Follow — \'If Aiden\'s story moves you, hit Follow\'\nAudit: ★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
-  ['JANUARY','01/05/2026','Inspire','Donor Thank You / What we accomplished in 2025 (impact recap carousel)','todo','mid','New Year, New Hope (Momentum + Credibility)','Format: Carousel\nHook: Warm/Community — Acknowledge then inspire\nCTA: Follow CTA — \'If Aiden\'s story moves you, hit Follow\''],
-  ['JANUARY','01/12/2026','Inspire','ABC7 IG reel video clip','todo','top','New Year, New Hope (Momentum + Credibility)','Format: Reel\nHook: Curiosity OR First-Person — Lead with Aiden\'s face\nCTA: Save CTA — \'Save this post to share Aiden\'s story later\'\nAudit: ★ Reel slot — shoot 30–60 sec.'],
-  ['JANUARY','01/12/2026','Fundraise','$1.5M to first human trial (impact ladder)','todo','mid','New Year, New Hope (Momentum + Credibility)','Format: Carousel\nHook: Pain Point — \'What does $50 actually do? Let me show you.\'\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['JANUARY','01/19/2026','Inspire','Family voice/hope','todo','top','New Year, New Hope (Momentum + Credibility)','Format: Reel\nHook: Relatability — Parent/caregiver POV\nCTA: Tag CTA — \'Tag someone who should know about INAD\'\nAudit: ★ Reel slot'],
-  ['JANUARY','01/19/2026','Educate','Why time matters','todo','high','New Year, New Hope (Momentum + Credibility)','Format: Carousel (5–7 slides)\nHook: Statistics / Bold Claim\nCTA: Tag CTA — \'Tag someone who should know about INAD\''],
-  ['JANUARY','01/26/2026','Inspire','Community gratitude','todo','top','New Year, New Hope (Momentum + Credibility)','Format: Reel\nHook: Warm/Community — Acknowledge then inspire\nCTA: Follow CTA — \'New here? Follow for weekly Aiden updates\'\nAudit: ★ Reel slot'],
-  ['JANUARY','01/26/2026','Fundraise','Help start 2026 strong','todo','mid','New Year, New Hope (Momentum + Credibility)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['JANUARY','NEWSLETTER','Newsletter','End of Year recap','todo','chill','New Year, New Hope (Momentum + Credibility)','Format: Email newsletter'],
-  ['FEBRUARY','02/02/2026','Inspire','Meet Aiden / why rare disease month matters','todo','top','Rare Disease Month (build to Feb 28)','Format: Reel\nHook: First-Person / Aiden speaks to camera\nCTA: Follow — \'If Aiden\'s story moves you, hit Follow\'\nAudit: ★ Reel slot'],
-  ['FEBRUARY','02/02/2026','Educate','Rare disease facts / myth vs fact','todo','high','Rare Disease Month (build to Feb 28)','Format: Carousel (5–7 slides)\nHook: Bold Claim — \'A cure could exist in our lifetime.\'\nCTA: Follow CTA'],
-  ['FEBRUARY','02/02/2026','Fundraise','Support the trial path','todo','mid','Rare Disease Month (build to Feb 28)','Format: Carousel\nHook: Pain Point\nCTA: Text INAD to 44-321'],
-  ['FEBRUARY','02/09/2026','Inspire','Aiden joy moment','todo','top','Rare Disease Month (build to Feb 28)','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['FEBRUARY','02/09/2026','Educate','INAD in 60 seconds','todo','high','Rare Disease Month (build to Feb 28)','Format: Carousel (5–7 slides)\nHook: Question Hook — \'What is INAD?\'\nCTA: Tag CTA'],
-  ['FEBRUARY','02/09/2026','Fundraise','Impact ladder + urgency','todo','mid','Rare Disease Month (build to Feb 28)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['FEBRUARY','02/16/2026','Inspire','Caregiver voice / what we wish people knew','todo','top','Rare Disease Month (build to Feb 28)','Format: Reel\nHook: Relatability — Parent/caregiver POV\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['FEBRUARY','02/16/2026','Educate','Myth vs fact','todo','high','Rare Disease Month (build to Feb 28)','Format: Carousel (5–7 slides)\nHook: Contrast / Transformation\nCTA: Save CTA'],
-  ['FEBRUARY','02/16/2026','Fundraise','Rare Disease Month donation push','todo','mid','Rare Disease Month (build to Feb 28)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321'],
-  ['FEBRUARY','02/23/2026','Inspire','Rare Disease Day countdown','todo','top','Rare Disease Month (build to Feb 28)','Format: Reel\nHook: First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['FEBRUARY','02/23/2026','Educate','Rare Disease Day explainer','todo','high','Rare Disease Month (build to Feb 28)','Format: Carousel (5–7 slides)\nHook: Statistics / Bold Claim\nCTA: Tag CTA'],
-  ['FEBRUARY','02/23/2026','Fundraise','Feb 28 call to action + gratitude recap','todo','mid','Rare Disease Month (build to Feb 28)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['FEBRUARY','NEWSLETTER','Newsletter','Rare Disease Day, INAD educational, social campaign engagement','todo','chill','Rare Disease Month (build to Feb 28)','Format: Email newsletter'],
-  ['FEBRUARY','LINKEDIN','Newsletter','LinkedIn Quarter Post','todo','chill','Rare Disease Month (build to Feb 28)','Format: LinkedIn post'],
-  ['MARCH','03/02/2026','Inspire','Birthday countdown + Aiden story','todo','top','Aiden\'s Birthday (Mar 12) Campaign','Format: Reel\nHook: First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['MARCH','03/02/2026','Educate','INAD explained (carousel)','todo','high','Aiden\'s Birthday (Mar 12) Campaign','Format: Carousel (5–7 slides)\nHook: Question Hook\nCTA: Tag CTA'],
-  ['MARCH','03/02/2026','Fundraise','Donate for Aiden\'s birthday','todo','mid','Aiden\'s Birthday (Mar 12) Campaign','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Visit AidensATeam.com'],
-  ['MARCH','03/09/2026','Inspire','Pre-birthday hype — 3 days away','todo','top','Aiden\'s Birthday (Mar 12) Campaign','Format: Reel\nHook: Curiosity\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['MARCH','03/09/2026','Fundraise','Birthday campaign — \'Give Aiden the best birthday gift\'','todo','mid','Aiden\'s Birthday (Mar 12) Campaign','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Visit AidensATeam.com'],
-  ['MARCH','03/12/2026','Inspire','🎂 Happy Birthday Aiden! — special birthday post','todo','top','Aiden\'s Birthday (Mar 12) Campaign','Format: Reel (BIRTHDAY SPECIAL)\nHook: First-Person\nCTA: Tag CTA — \'Tag someone who should celebrate Aiden today\'\nAudit: ★ Reel slot — PRIORITY'],
-  ['MARCH','03/16/2026','Educate','Trial progress explainer','todo','high','Aiden\'s Birthday (Mar 12) Campaign','Format: Carousel (5–7 slides)\nHook: Bold Claim\nCTA: Tag CTA'],
-  ['MARCH','03/16/2026','Fundraise','Keep momentum going','todo','mid','Aiden\'s Birthday (Mar 12) Campaign','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['MARCH','03/23/2026','Inspire','Community spotlight','todo','top','Aiden\'s Birthday (Mar 12) Campaign','Format: Reel\nHook: Curiosity\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['MARCH','03/23/2026','Educate','INAD 101 (simple carousel)','todo','high','Aiden\'s Birthday (Mar 12) Campaign','Format: Carousel (5–7 slides)\nHook: Question Hook\nCTA: Text INAD to 44-321 | Visit AidensATeam.com'],
-  ['MARCH','03/30/2026','Inspire','Joy/portrait + 1 line','todo','top','Aiden\'s Birthday (Mar 12) Campaign','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['MARCH','NEWSLETTER','Newsletter','Aiden\'s birthday social campaign','todo','chill','Aiden\'s Birthday (Mar 12) Campaign','Format: Email newsletter'],
-  ['MARCH','LINKEDIN','Newsletter','LinkedIn Quarter Post','todo','chill','Aiden\'s Birthday (Mar 12) Campaign','Format: LinkedIn post'],
-  ['APRIL','04/06/2026','Inspire','Aiden update','todo','top','Education + Credibility Month','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['APRIL','04/06/2026','Educate','Trial timeline simplified','todo','high','Education + Credibility Month','Format: Carousel (5–7 slides)\nHook: Bold Claim\nCTA: Follow CTA'],
-  ['APRIL','04/13/2026','Inspire','Hope quote + Aiden photo','todo','top','Education + Credibility Month','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['APRIL','04/13/2026','Fundraise','What donations fund (impact ladder)','todo','mid','Education + Credibility Month','Format: Carousel\nHook: Pain Point\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['APRIL','04/20/2026','Inspire','Community story','todo','top','Education + Credibility Month','Format: Reel\nHook: Curiosity\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['APRIL','04/20/2026','Educate','Why clinical trials cost what they cost','todo','high','Education + Credibility Month','Format: Carousel (5–7 slides)\nHook: Bold Claim\nCTA: Tag CTA'],
-  ['APRIL','04/27/2026','Inspire','Gratitude','todo','top','Education + Credibility Month','Format: Reel\nHook: Warm/Community\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['APRIL','04/27/2026','Fill-in','Donor recognition OR merch','todo','chill','Education + Credibility Month','Format: Static or Carousel\nHook: Countdown / Question\nCTA: Text INAD to 44-321 | Visit AidensATeam.com'],
-  ['MAY','05/04/2026','Inspire','Mother\'s Month opener — for the moms who fight','todo','top','Moms for Aiden (Mother\'s Day)','Format: Reel\nHook: First-Person / Caregiver POV\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['MAY','05/04/2026','Educate','What caregivers sacrifice for rare disease kids','todo','high','Moms for Aiden (Mother\'s Day)','Format: Carousel (5–7 slides)\nHook: Relatability\nCTA: Tag CTA'],
-  ['MAY','05/11/2026','Inspire','Mother\'s Day tribute','todo','top','Moms for Aiden (Mother\'s Day)','Format: Reel\nHook: First-Person\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['MAY','05/11/2026','Educate','What INAD families face','todo','high','Moms for Aiden (Mother\'s Day)','Format: Carousel (5–7 slides)\nHook: Relatability\nCTA: Save CTA'],
-  ['MAY','05/18/2026','Inspire','Joy + resilience','todo','top','Moms for Aiden (Mother\'s Day)','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['MAY','05/18/2026','Fill-in','Merch highlight (Moms for Aiden)','todo','mid','Moms for Aiden (Mother\'s Day)','Format: Carousel\nHook: Story-first — Show Aiden wearing/using the product\nCTA: Shop link in bio — DO NOT open caption with price\nAudit: ⚠ REQUIRE Aiden in product photo'],
-  ['MAY','05/25/2026','Inspire','Community gratitude','todo','top','Moms for Aiden (Mother\'s Day)','Format: Reel\nHook: Warm/Community\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['MAY','05/25/2026','Fundraise','Keep momentum','todo','mid','Moms for Aiden (Mother\'s Day)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['JUNE','06/01/2026','Inspire','Mid-year reflection','todo','top','Mid-Year Momentum + Simple Community Moment','Format: Reel\nHook: First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['JUNE','06/01/2026','Fundraise','Mid-year push','todo','mid','Mid-Year Momentum + Simple Community Moment','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['JUNE','06/08/2026','Inspire','Community spotlight','todo','top','Mid-Year Momentum + Simple Community Moment','Format: Reel\nHook: Curiosity\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['JUNE','06/08/2026','Educate','Trial update — what\'s happening now','todo','high','Mid-Year Momentum + Simple Community Moment','Format: Carousel (5–7 slides)\nHook: Bold Claim\nCTA: Tag CTA'],
-  ['JUNE','06/15/2026','Inspire','Aiden joy moment','todo','top','Mid-Year Momentum + Simple Community Moment','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['JUNE','06/15/2026','Fill-in','Action Squad spotlight','todo','mid','Mid-Year Momentum + Simple Community Moment','Format: Static or Carousel\nHook: Curiosity\nCTA: Tag a teammate / thank supporters'],
-  ['JUNE','06/22/2026','Inspire','Gratitude','todo','top','Mid-Year Momentum + Simple Community Moment','Format: Reel\nHook: Warm/Community\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['JUNE','06/22/2026','Fundraise','Mid-year donation push','todo','mid','Mid-Year Momentum + Simple Community Moment','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['JUNE','06/29/2026','Inspire','Summer is here — Aiden update','todo','top','Mid-Year Momentum + Simple Community Moment','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['JUNE','NEWSLETTER','Newsletter','Mid-year update, trial news, impact recap','todo','chill','Mid-Year Momentum + Simple Community Moment','Format: Email newsletter'],
-  ['JULY','07/06/2026','Inspire','Summer Aiden moment — UGC ask','todo','top','Summer Shareability + UGC','Format: Reel\nHook: First-Person\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['JULY','07/06/2026','Educate','What makes INAD research unique','todo','high','Summer Shareability + UGC','Format: Carousel (5–7 slides)\nHook: Statistics / Bold Claim\nCTA: Follow CTA'],
-  ['JULY','07/13/2026','Merch','Merch highlight + tag us','todo','mid','Summer Shareability + UGC','Format: Carousel\nHook: Story-first — Show Aiden wearing/using the product. Lead with HIM, not the product.\nCTA: Shop link in bio — DO NOT open caption with price\nAudit: ⚠ REQUIRE Aiden wearing/holding product + emotional hook. NO price-led captions.'],
-  ['JULY','07/20/2026','Inspire','Aiden update','todo','top','Summer Shareability + UGC','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['JULY','07/20/2026','Educate','Educate OR Fundraise — choose based on current momentum','todo','high','Summer Shareability + UGC','Format: Carousel (5–7 slides)\nHook: Statistics / Bold Claim\nCTA: Tag CTA'],
-  ['JULY','07/27/2026','Inspire','Gratitude','todo','top','Summer Shareability + UGC','Format: Reel\nHook: Warm/Community\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['JULY','07/27/2026','Fundraise','Small summer push','todo','mid','Summer Shareability + UGC','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['AUGUST','08/03/2026','Inspire','Back-to-school reflection','todo','top','Back-to-School + Time Matters','Format: Reel\nHook: First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['AUGUST','08/03/2026','Fundraise','Time matters + impact ladder','todo','mid','Back-to-School + Time Matters','Format: Carousel\nHook: Pain Point\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['AUGUST','08/10/2026','Inspire','Aiden joy moment','todo','top','Back-to-School + Time Matters','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['AUGUST','08/10/2026','Educate','Trial pathway explained simply','todo','high','Back-to-School + Time Matters','Format: Carousel (5–7 slides)\nHook: Bold Claim\nCTA: Tag CTA'],
-  ['AUGUST','08/17/2026','Inspire','Community spotlight','todo','top','Back-to-School + Time Matters','Format: Reel\nHook: Curiosity\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['AUGUST','08/17/2026','Fill-in','Action Squad (grant research)','todo','mid','Back-to-School + Time Matters','Format: Static or Carousel\nHook: Curiosity\nCTA: Tag a teammate / thank supporters'],
-  ['AUGUST','08/24/2026','Inspire','Gratitude','todo','top','Back-to-School + Time Matters','Format: Reel\nHook: Warm/Community\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['AUGUST','08/24/2026','Merch','Fall teaser','todo','mid','Back-to-School + Time Matters','Format: Carousel\nHook: Story-first — Show Aiden in/with product\nCTA: Shop link in bio — story-first!\nAudit: ⚠ REQUIRE Aiden wearing/holding product + emotional hook.'],
-  ['AUGUST','NEWSLETTER','Newsletter','Back to school, Aiden starting school, merch sales','todo','chill','Back-to-School + Time Matters','Format: Email newsletter'],
-  ['SEPTEMBER','09/07/2026','Inspire','Why we fight','todo','top','Fall Momentum + Foundation/Partner Outreach','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['SEPTEMBER','09/07/2026','Educate','How to help beyond donating (foundations/employers)','todo','high','Fall Momentum + Foundation/Partner Outreach','Format: Carousel (5–7 slides)\nHook: Statistics / Bold Claim\nCTA: Follow CTA'],
-  ['SEPTEMBER','09/14/2026','Inspire','Aiden update','todo','top','Fall Momentum + Foundation/Partner Outreach','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['SEPTEMBER','09/14/2026','Fundraise','Fall momentum push','todo','mid','Fall Momentum + Foundation/Partner Outreach','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['SEPTEMBER','09/21/2026','Inspire','Community gratitude','todo','top','Fall Momentum + Foundation/Partner Outreach','Format: Reel\nHook: Warm/Community\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['SEPTEMBER','09/21/2026','Educate','Employer match / foundation giving guide','todo','high','Fall Momentum + Foundation/Partner Outreach','Format: Carousel (5–7 slides)\nHook: Bold Claim\nCTA: Follow CTA'],
-  ['SEPTEMBER','09/28/2026','Inspire','Hope ahead','todo','top','Fall Momentum + Foundation/Partner Outreach','Format: Reel\nHook: First-Person\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['SEPTEMBER','09/28/2026','Fundraise','Q4 giving season opener','todo','mid','Fall Momentum + Foundation/Partner Outreach','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['OCTOBER','10/05/2026','Inspire','Aiden update — October','todo','top','Giving Season Prep + Match Donor Search','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['OCTOBER','10/05/2026','Educate','How matching gifts work','todo','high','Giving Season Prep + Match Donor Search','Format: Carousel (5–7 slides)\nHook: Statistics / Bold Claim\nCTA: Follow CTA'],
-  ['OCTOBER','10/12/2026','Inspire','Community story','todo','top','Giving Season Prep + Match Donor Search','Format: Reel\nHook: Curiosity\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['OCTOBER','10/12/2026','Fundraise','Matching gift campaign launch','todo','mid','Giving Season Prep + Match Donor Search','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['OCTOBER','10/19/2026','Inspire','Gratitude','todo','top','Giving Season Prep + Match Donor Search','Format: Reel\nHook: Warm/Community\nCTA: Tag a teammate / thank supporters\nAudit: ★ Reel slot'],
-  ['OCTOBER','10/19/2026','Fill-in','Action Squad recruitment (GT support)','todo','mid','Giving Season Prep + Match Donor Search','Format: Static or Carousel\nHook: Countdown / Question\nCTA: Text INAD to 44-321 | Visit AidensATeam.com'],
-  ['OCTOBER','10/26/2026','Inspire','Hope','todo','top','Giving Season Prep + Match Donor Search','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Text INAD to 44-321 | Visit AidensATeam.com\nAudit: ★ Reel slot'],
-  ['OCTOBER','10/26/2026','Merch','Fall/winter drop','todo','mid','Giving Season Prep + Match Donor Search','Format: Static or Carousel\nHook: Story-first\nCTA: Shop link in bio — story-first!\nAudit: ⚠ REQUIRE Aiden wearing/holding product. NO price-led captions.'],
-  ['NOVEMBER','11/02/2026','Inspire','Why now','todo','top','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['NOVEMBER','11/02/2026','Educate','What donations do','todo','high','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Carousel (5–7 slides)\nHook: Statistics / Bold Claim\nCTA: Follow CTA'],
-  ['NOVEMBER','11/02/2026','Fundraise','GT kickoff','todo','mid','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['NOVEMBER','11/09/2026','Inspire','Community gratitude','todo','top','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Reel\nHook: Warm/Community\nCTA: Tag a teammate / thank supporters\nAudit: ★ Reel slot'],
-  ['NOVEMBER','11/09/2026','Fundraise','GT push + match if possible','todo','mid','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['NOVEMBER','11/09/2026','Reminder','Countdown to Giving Tuesday','todo','mid','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Carousel\nHook: Countdown / Question\nCTA: Save CTA'],
-  ['NOVEMBER','11/16/2026','Fill-in','Corporate match / submit donations to employer / Benevity','todo','mid','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Carousel\nHook: Countdown / Question\nCTA: Tag CTA'],
-  ['NOVEMBER','11/23/2026','Inspire','Giving Tuesday day-of post','todo','top','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Tag CTA\nAudit: ★ Reel slot — GIVING TUESDAY'],
-  ['NOVEMBER','11/23/2026','Fundraise','Day-of urgency — Giving Tuesday','todo','mid','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['NOVEMBER','11/23/2026','Gratitude','Results recap','todo','mid','Giving Tuesday + Gratitude (GT Nov 24, 2026)','Format: Carousel\nHook: Warm Community\nCTA: Tag a teammate / thank supporters'],
-  ['DECEMBER','12/07/2026','Inspire','Year in review — Aiden\'s 2026','todo','top','Year-End Gratitude + New Year Preview','Format: Reel\nHook: First-Person\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['DECEMBER','12/07/2026','Gratitude','Thank you 2026 donors + supporters','todo','mid','Year-End Gratitude + New Year Preview','Format: Carousel\nHook: Warm Community\nCTA: Tag a teammate / thank supporters'],
-  ['DECEMBER','12/14/2026','Inspire','Christmas week — Aiden joy','todo','top','Year-End Gratitude + New Year Preview','Format: Reel\nHook: First-Person\nCTA: Tag CTA\nAudit: ★ Reel slot'],
-  ['DECEMBER','12/14/2026','Fundraise','Year-end giving push','todo','mid','Year-End Gratitude + New Year Preview','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['DECEMBER','12/21/2026','Inspire','Holiday miracle — hope for Aiden','todo','top','Year-End Gratitude + New Year Preview','Format: Reel\nHook: Curiosity OR First-Person\nCTA: Save CTA\nAudit: ★ Reel slot'],
-  ['DECEMBER','12/28/2026','Inspire','New Year preview — what 2027 holds for Aiden','todo','top','Year-End Gratitude + New Year Preview','Format: Reel\nHook: Curiosity\nCTA: Follow CTA\nAudit: ★ Reel slot'],
-  ['DECEMBER','12/28/2026','Fundraise','New Year\'s donation ask','todo','mid','Year-End Gratitude + New Year Preview','Format: Carousel\nHook: Urgency + Story\nCTA: Text INAD to 44-321 | Save this post | Share to your Story'],
-  ['DECEMBER','NEWSLETTER','Newsletter','Year-end recap, impact report, 2027 preview','todo','chill','Year-End Gratitude + New Year Preview','Format: Email newsletter'],
+  ['JANUARY','01/05/2026','Inspire','2026 mission + Aiden moment','✦ REEL (priority)','First-Person / Aiden speaks to camera','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JANUARY','01/05/2026','Inspire','Donor Thank You / What we accomplished in 2025 (impact recap carousel)','Carousel','Warm/Community — Acknowledge then inspire','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'',''],
+  ['JANUARY','01/12/2026','Inspire','ABC7 IG reel video clip','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JANUARY','01/12/2026','Fundraise','$1.5M to first human trial (impact ladder)','Carousel','Pain Point — \'What does $50 actually do? Let me show you.\'','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['JANUARY','01/19/2026','Inspire','Family voice/hope','✦ REEL (priority)','Relatability — Parent/caregiver POV','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JANUARY','01/19/2026','Educate','Why time matters','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['JANUARY','01/26/2026','Inspire','Community gratitude','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JANUARY','01/26/2026','Fundraise','Help start 2026 strong','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['FEBRUARY','02/02/2026','Inspire','Meet Aiden / why rare disease month matters','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['FEBRUARY','02/02/2026','Educate','Rare disease facts / myth vs fact','Carousel (5–7 slides)','Myth vs. Fact — \'Most people think X. Here\'s the truth.\'','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'',''],
+  ['FEBRUARY','02/02/2026','Fundraise','Support the trial path','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['FEBRUARY','02/09/2026','Inspire','Aiden joy moment','✦ REEL (priority)','First-Person / Aiden speaks to camera','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['FEBRUARY','02/09/2026','Educate','INAD in 60 seconds','Carousel (5–7 slides)','Question Hook — \'What is INAD? Here\'s what no one tells you.\'','Save CTA — \'Save this post to share Aiden\'s story later\'',''],
+  ['FEBRUARY','02/09/2026','Fundraise','Impact ladder + urgency','Carousel','Pain Point — \'What does $50 actually do? Let me show you.\'','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['FEBRUARY','02/16/2026','Inspire','Caregiver voice / what we wish people knew','✦ REEL (priority)','Relatability — Parent/caregiver POV','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['FEBRUARY','02/16/2026','Educate','Myth vs fact','Carousel (5–7 slides)','Myth vs. Fact — \'Most people think X. Here\'s the truth.\'','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['FEBRUARY','02/16/2026','Fundraise','Share + donate','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['FEBRUARY','02/23/2026','Inspire','Rare Disease Day countdown','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['FEBRUARY','02/23/2026','Educate','Rare Disease Day explainer','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Text INAD to 44-321 | Visit AidensATeam.com',''],
+  ['FEBRUARY','02/23/2026','Fundraise','Feb 28 call to action + gratitude recap','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['MARCH','03/02/2026','Inspire','Birthday countdown + Aiden story','✦ REEL (priority)','Transformation — \'Another year fighting. Another year winning.\'','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MARCH','03/02/2026','Educate','INAD explained (carousel)','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'',''],
+  ['MARCH','03/02/2026','Fundraise','Donate for Aiden\'s birthday','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['MARCH','03/09/2026','Inspire','Celebrate Aiden (video montage)','✦ REEL (priority)','First-Person / Aiden speaks to camera','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MARCH','03/09/2026','Fundraise','Birthday push + impact ladder','Carousel','Pain Point — \'What does $50 actually do? Let me show you.\'','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['MARCH','03/09/2026','Gratitude','Thank you + recap','Carousel','Warm Community — \'Because of you, [specific impact]. Thank you.\'','Tag a teammate / thank someone | Comment \'A-Team\' to show support',''],
+  ['MARCH','03/16/2026','Inspire','Post-birthday update','✦ REEL (priority)','Transformation — \'Another year fighting. Another year winning.\'','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MARCH','03/16/2026','Educate','Trial progress explainer','Carousel (5–7 slides)','Bold Claim — \'A cure could exist in our lifetime. Here\'s why.\'','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['MARCH','03/16/2026','Fundraise','Keep momentum going','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['MARCH','03/23/2026','Inspire','Community spotlight','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MARCH','03/23/2026','Educate','INAD 101 (simple carousel)','Carousel (5–7 slides)','Question Hook — \'What is INAD? Here\'s what no one tells you.\'','Text INAD to 44-321 | Visit AidensATeam.com',''],
+  ['MARCH','03/30/2026','Inspire','Joy/portrait + 1 line','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'New here? Follow for weekly Aiden updates\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['APRIL','04/06/2026','Inspire','Aiden update','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['APRIL','04/06/2026','Educate','Trial timeline simplified','Carousel (5–7 slides)','Bold Claim — \'A cure could exist in our lifetime. Here\'s why.\'','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'',''],
+  ['APRIL','04/13/2026','Inspire','Hope quote + Aiden photo','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['APRIL','04/13/2026','Fundraise','What donations fund (impact ladder)','Carousel','Pain Point — \'What does $50 actually do? Let me show you.\'','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['APRIL','04/20/2026','Inspire','Community story','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['APRIL','04/20/2026','Educate','Why clinical trials cost what they cost','Carousel (5–7 slides)','Bold Claim — \'A cure could exist in our lifetime. Here\'s why.\'','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['APRIL','04/27/2026','Inspire','Gratitude','✦ REEL (priority)','Warm/Community — Acknowledge then inspire','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['APRIL','04/27/2026','Fill-in','Donor recognition OR merch','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Text INAD to 44-321 | Visit AidensATeam.com',''],
+  ['MAY','05/04/2026','Inspire','Caregiver/mom story','✦ REEL (priority)','Relatability — Parent/caregiver POV','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MAY','05/04/2026','Fundraise','Moms helping moms (donate/share)','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['MAY','05/11/2026','Inspire','Mother\'s Day tribute','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MAY','05/11/2026','Educate','What INAD families face','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Save CTA — \'Save this post to share Aiden\'s story later\'',''],
+  ['MAY','05/18/2026','Inspire','Joy + resilience','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MAY','05/18/2026','Fill-in','Merch highlight (Moms for Aiden)','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['MAY','05/25/2026','Inspire','Community gratitude','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['MAY','05/25/2026','Fundraise','Keep momentum','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['JUNE','06/01/2026','Inspire','Mid-year reflection','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JUNE','06/01/2026','Fundraise','Mid-year push','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['JUNE','06/08/2026','Inspire','Community spotlight','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JUNE','06/08/2026','Educate','Trial progress update','Carousel (5–7 slides)','Bold Claim — \'A cure could exist in our lifetime. Here\'s why.\'','Save CTA — \'Save this post to share Aiden\'s story later\'',''],
+  ['JUNE','06/15/2026','Inspire','Aiden joy moment','✦ REEL (priority)','First-Person / Aiden speaks to camera','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JUNE','06/15/2026','Fill-in','Action Squad volunteer story ask','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['JUNE','06/22/2026','Inspire','Gratitude','✦ REEL (priority)','Warm/Community — Acknowledge then inspire','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JUNE','06/22/2026','Merch','Summer highlight','Carousel — AIDEN-FIRST ⚠','Story-first — Show Aiden wearing/using the product. Lead with HIM, not the product.','Shop link in bio (story-first!) — DO NOT open caption with price','⚠ AUDIT: Merch posts avg 2–16 likes when product-first. REQUIRE Aiden wearing/holding product + emotional hook. NO price-led captions.'],
+  ['JULY','07/06/2026','Inspire','Summer joy video','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JULY','07/06/2026','Educate','INAD in 60 seconds','Carousel (5–7 slides)','Question Hook — \'What is INAD? Here\'s what no one tells you.\'','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'',''],
+  ['JULY','07/13/2026','Inspire','Community repost montage','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JULY','07/13/2026','Merch','Merch highlight + tag us','Carousel — AIDEN-FIRST ⚠','Story-first — Show Aiden wearing/using the product. Lead with HIM, not the product.','Shop link in bio (story-first!) — DO NOT open caption with price','⚠ AUDIT: Merch posts avg 2–16 likes when product-first. REQUIRE Aiden wearing/holding product + emotional hook. NO price-led captions.'],
+  ['JULY','07/20/2026','Inspire','Aiden update','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JULY','07/20/2026','Educate','Educate OR Fundraise — choose based on momentum','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['JULY','07/27/2026','Inspire','Gratitude','✦ REEL (priority)','Warm/Community — Acknowledge then inspire','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['JULY','07/27/2026','Fundraise','Small summer push','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['AUGUST','08/03/2026','Inspire','Back-to-school reflection','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['AUGUST','08/03/2026','Fundraise','Time matters + impact ladder','Carousel','Pain Point — \'What does $50 actually do? Let me show you.\'','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['AUGUST','08/10/2026','Inspire','Aiden joy moment','✦ REEL (priority)','First-Person / Aiden speaks to camera','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['AUGUST','08/10/2026','Educate','Trial pathway explained simply','Carousel (5–7 slides)','Bold Claim — \'A cure could exist in our lifetime. Here\'s why.\'','Save CTA — \'Save this post to share Aiden\'s story later\'',''],
+  ['AUGUST','08/17/2026','Inspire','Community spotlight','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['AUGUST','08/17/2026','Fill-in','Action Squad (grant research)','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['AUGUST','08/24/2026','Inspire','Gratitude','✦ REEL (priority)','Warm/Community — Acknowledge then inspire','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['AUGUST','08/24/2026','Merch','Fall teaser','Carousel — AIDEN-FIRST ⚠','Story-first — Show Aiden wearing/using the product. Lead with HIM, not the product.','Shop link in bio (story-first!) — DO NOT open caption with price','⚠ AUDIT: Merch posts avg 2–16 likes when product-first. REQUIRE Aiden wearing/holding product + emotional hook. NO price-led captions.'],
+  ['SEPTEMBER','09/07/2026','Inspire','Why we fight','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['SEPTEMBER','09/07/2026','Educate','How to help beyond donating (foundations/employers)','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'',''],
+  ['SEPTEMBER','09/14/2026','Inspire','Aiden update','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['SEPTEMBER','09/14/2026','Fundraise','Fall momentum push','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['SEPTEMBER','09/21/2026','Inspire','Community gratitude','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['SEPTEMBER','09/21/2026','Fill-in','Donor/grant shoutout','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['SEPTEMBER','09/28/2026','Inspire','Hope + progress bar','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['SEPTEMBER','09/28/2026','Educate','Trial funding explainer','Carousel (5–7 slides)','Bold Claim — \'A cure could exist in our lifetime. Here\'s why.\'','Text INAD to 44-321 | Visit AidensATeam.com',''],
+  ['OCTOBER','10/05/2026','Inspire','Aiden story','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['OCTOBER','10/05/2026','Fundraise','Giving season preview','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['OCTOBER','10/12/2026','Inspire','Community spotlight','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['OCTOBER','10/12/2026','Educate','What $1.5M unlocks','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Save CTA — \'Save this post to share Aiden\'s story later\'',''],
+  ['OCTOBER','10/19/2026','Inspire','Gratitude','✦ REEL (priority)','Warm/Community — Acknowledge then inspire','Tag a teammate / thank someone | Comment \'A-Team\' to show support','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['OCTOBER','10/19/2026','Fill-in','Action Squad recruitment','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Text INAD to 44-321 | Visit AidensATeam.com',''],
+  ['OCTOBER','10/26/2026','Inspire','Hope','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['OCTOBER','10/26/2026','Merch','Fall/winter drop','Carousel — AIDEN-FIRST ⚠','Story-first — Show Aiden wearing/using the product. Lead with HIM, not the product.','Shop link in bio (story-first!) — DO NOT open caption with price','⚠ AUDIT: Merch posts avg 2–16 likes when product-first. REQUIRE Aiden wearing/holding product + emotional hook. NO price-led captions.'],
+  ['NOVEMBER','11/02/2026','Inspire','Why now','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['NOVEMBER','11/02/2026','Educate','What donations do','Carousel (5–7 slides)','Statistics / Bold Claim — Open with a number that stops the scroll','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'',''],
+  ['NOVEMBER','11/02/2026','Fundraise','GT kickoff','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['NOVEMBER','11/09/2026','Inspire','Community gratitude','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['NOVEMBER','11/09/2026','Fundraise','GT push + match if possible','Carousel','FOMO + Multiplication — \'Your donation doubles today. Here\'s how.\'','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['NOVEMBER','11/09/2026','Reminder','Countdown','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Save CTA — \'Save this post to share Aiden\'s story later\'',''],
+  ['NOVEMBER','11/16/2026','Fill-in','Corporate match / submit donations to employer / Benevity','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Tag CTA — \'Tag someone who should know about INAD\'',''],
+  ['NOVEMBER','11/23/2026','Inspire','Giving Tuesday day-of post','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['NOVEMBER','11/23/2026','Fundraise','Day-of urgency','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['NOVEMBER','11/23/2026','Gratitude','Results recap','Carousel','Warm Community — \'Because of you, [specific impact]. Thank you.\'','Tag a teammate / thank someone | Comment \'A-Team\' to show support',''],
+  ['NOVEMBER','11/30/2026','Inspire','Keep going','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['NOVEMBER','11/30/2026','Fundraise','Year-end begins','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['NOVEMBER','11/30/2026','Fill-in','Donor shoutout','Static or Carousel','Countdown / Question — Keep it simple, create low-stakes engagement','Text INAD to 44-321 | Visit AidensATeam.com',''],
+  ['DECEMBER','12/07/2026','Inspire','Gratitude + hope','✦ REEL (priority)','Warm/Community — Acknowledge then inspire','Follow CTA — \'If Aiden\'s story moves you, hit Follow\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['DECEMBER','12/07/2026','Fundraise','Year-end push','Carousel','Urgency + Story — Open with Aiden, close with the ask','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['DECEMBER','12/07/2026','Merch','Giftable highlight','Carousel — AIDEN-FIRST ⚠','Story-first — Show Aiden wearing/using the product. Lead with HIM, not the product.','Shop link in bio (story-first!) — DO NOT open caption with price','⚠ AUDIT: Merch posts avg 2–16 likes when product-first. REQUIRE Aiden wearing/holding product + emotional hook. NO price-led captions.'],
+  ['DECEMBER','12/14/2026','Inspire','Aiden update','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Save CTA — \'Save this post to share Aiden\'s story later\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['DECEMBER','12/14/2026','Fundraise','Impact ladder + urgency','Carousel','Pain Point — \'What does $50 actually do? Let me show you.\'','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['DECEMBER','12/14/2026','Educate','Trial progress + next steps','Carousel (5–7 slides)','Bold Claim — \'A cure could exist in our lifetime. Here\'s why.\'','Save CTA — \'Save this post to share Aiden\'s story later\'',''],
+  ['DECEMBER','12/21/2026','Inspire','Community thank you','✦ REEL (priority)','Curiosity — \'Meet the person who showed up for Aiden\'','Tag CTA — \'Tag someone who should know about INAD\'','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['DECEMBER','12/21/2026','Fundraise','Last chance tax-deductible','Carousel','STOP SCROLLING — Urgency + specific stakes (\'We need $X by [date]\')','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['DECEMBER','12/28/2026','Inspire','Year-end impact recap','✦ REEL (priority)','Curiosity OR First-Person — Lead with Aiden\'s face','Text INAD to 44-321 | Visit AidensATeam.com','★ Reel slot — shoot 30–60 sec. Add Follow CTA in final 3 seconds.'],
+  ['DECEMBER','12/28/2026','Fundraise','Year-end impact: final hours','Carousel','STOP SCROLLING — Urgency + specific stakes (\'We need $X by [date]\')','Text INAD to 44-321 | Save this post | Share to your Story',''],
+  ['DECEMBER','12/28/2026','Inspire','Entering 2027 with momentum','Carousel','Relatability — Parent/caregiver POV','Text INAD to 44-321 | Visit AidensATeam.com',''],
 ];
 
-function mkDate(d){if(!d||d==='NEWSLETTER'||d==='LINKEDIN')return '';const p=d.split('/');if(p.length<3)return '';return `${p[2]}-${p[0].padStart(2,'0')}-${p[1].padStart(2,'0')}`;}
+// ── HELPERS ───────────────────────────────────────
+function mkDate(d){
+  if(!d) return '';
+  const p=d.split('/');
+  if(p.length<3) return '';
+  return `${p[2]}-${p[0].padStart(2,'0')}-${p[1].padStart(2,'0')}`;
+}
 function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36);}
+function derivePriority(format){
+  const f=(format||'').toLowerCase();
+  if(f.includes('reel')) return 'top';
+  if(f.includes('5–7')||f.includes('5-7')) return 'high';
+  if(f.includes('carousel')) return 'mid';
+  return 'chill';
+}
 
 // ── STATE ─────────────────────────────────────────
-// Tasks live in Firebase. Dark mode + collapsed are per-user (localStorage).
-let S = {
-  tasks: [],
-  dark: localStorage.getItem('aat-dark') === 'true',
-  collapsed: JSON.parse(localStorage.getItem('aat-collapsed') || '{}'),
-  catFilter: 'all',
-  monthFilter: 'all',
-  search: '',
+let S={
+  tasks:[],
+  dark: localStorage.getItem('aat-dark')==='true',
+  collapsed: JSON.parse(localStorage.getItem('aat-collapsed')||'{}'),
+  catFilter:'all', monthFilter:'all', search:'',
 };
 
-// ── FIREBASE SAVE (debounced, tasks only) ─────────
-let _saveTimer = null;
-let _ownSave = false;
-
-function save() {
+// ── FIREBASE SAVE ─────────────────────────────────
+let _saveTimer=null, _ownSave=false;
+function save(){
   clearTimeout(_saveTimer);
-  _saveTimer = setTimeout(() => {
-    _ownSave = true;
-    set(boardRef, { tasks: S.tasks }).catch(e => console.error('Firebase save error:', e));
-  }, 400);
+  _saveTimer=setTimeout(()=>{
+    _ownSave=true;
+    set(boardRef,{tasks:S.tasks}).catch(e=>console.error('Firebase save error:',e));
+  },400);
+}
+function saveLocal(){
+  localStorage.setItem('aat-dark',S.dark);
+  localStorage.setItem('aat-collapsed',JSON.stringify(S.collapsed));
 }
 
-function saveLocal() {
-  localStorage.setItem('aat-dark', S.dark);
-  localStorage.setItem('aat-collapsed', JSON.stringify(S.collapsed));
-}
-
-// ── FIREBASE REALTIME LISTENER ────────────────────
-let _ready = false;
-
-onValue(boardRef, (snapshot) => {
-  const data = snapshot.val();
-
-  if (!_ready) {
-    // First load — seed Firebase if empty
-    _ready = true;
-    if (data && data.tasks && data.tasks.length > 0) {
-      S.tasks = data.tasks;
+// ── FIREBASE LISTENER (initial load + real-time) ──
+let _ready=false;
+onValue(boardRef,(snapshot)=>{
+  const data=snapshot.val();
+  if(!_ready){
+    _ready=true;
+    if(data&&data.tasks&&data.tasks.length>0){
+      S.tasks=data.tasks;
     } else {
-      const TODAY = new Date().toISOString().split('T')[0];
-      S.tasks = SEED.map(([month, date, type, title, status, priority, theme, notes]) => {
-        const due = mkDate(date);
-        const s = due && due < TODAY ? 'complete' : status;
-        return { id: uid(), month, date, due, type, title, status: s, priority, theme, notes: notes || '', week: '' };
+      const TODAY=new Date().toISOString().split('T')[0];
+      S.tasks=SEED.map(([month,date,type,title,format,hook,cta,audit])=>{
+        const due=mkDate(date);
+        const priority=derivePriority(format);
+        const status=due&&due<TODAY?'complete':'todo';
+        return {id:uid(),month,date,due,type,title,status,priority,format,hook,cta,audit,week:''};
       });
       save();
     }
-    // Show app, hide loading
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    applyTheme();
-    renderFilters();
-    renderBoard();
+    document.getElementById('loading').style.display='none';
+    document.getElementById('app').style.display='block';
+    applyTheme();renderFilters();renderBoard();
     return;
   }
-
-  // Subsequent updates — skip our own writes, apply others'
-  if (_ownSave) { _ownSave = false; return; }
-  if (data && data.tasks) {
-    S.tasks = data.tasks;
-    renderFilters();
-    renderBoard();
+  if(_ownSave){_ownSave=false;return;}
+  if(data&&data.tasks){
+    S.tasks=data.tasks;
+    renderFilters();renderBoard();
   }
 });
 
-// ── THEME ──────────────────────────────────────────
-function applyTheme() {
-  document.documentElement.setAttribute('data-theme', S.dark ? 'dark' : '');
-  document.getElementById('dt').textContent = S.dark ? '☀️' : '🌙';
+// ── THEME ─────────────────────────────────────────
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme',S.dark?'dark':'');
+  document.getElementById('dt').textContent=S.dark?'☀️':'🌙';
 }
-document.getElementById('dt').addEventListener('click', () => {
-  S.dark = !S.dark; applyTheme(); saveLocal();
-});
+document.getElementById('dt').addEventListener('click',()=>{S.dark=!S.dark;applyTheme();saveLocal();});
 
 // ── FILTERS ───────────────────────────────────────
-function renderFilters() {
-  const fp = document.getElementById('fp');
-  const catPills = [{ id: 'all', label: 'All Types', color: null }, ...Object.keys(CATS).map(k => ({ id: k, label: k, color: CATS[k] }))];
-  const monthPills = [{ id: 'all', label: 'All' }, ...MONTHS.map(m => ({ id: m, label: m.slice(0, 3) }))];
-  fp.innerHTML =
-    catPills.map(c => {
-      const a = S.catFilter === c.id;
-      const bg = a && c.color ? c.color : a ? 'var(--text)' : '';
-      const bc = !a && c.color ? c.color : 'transparent';
-      const tc = !a && c.color ? c.color : '';
-      return `<button class="pill${a ? ' active' : ''}" data-f="${c.id}"
-        style="${bg ? `background:${bg}` : ''};${bc !== 'transparent' ? `border-color:${bc}` : ''};${tc ? `color:${tc}` : ''}"
+function renderFilters(){
+  const fp=document.getElementById('fp');
+  const catPills=[{id:'all',label:'All Types',color:null},...Object.keys(CATS).map(k=>({id:k,label:k,color:CATS[k]}))];
+  const monthPills=[{id:'all',label:'All'},...MONTHS.map(m=>({id:m,label:m.slice(0,3)}))];
+  fp.innerHTML=
+    catPills.map(c=>{
+      const a=S.catFilter===c.id;
+      const bg=a&&c.color?c.color:a?'var(--text)':'';
+      const bc=!a&&c.color?c.color:'transparent';
+      const tc=!a&&c.color?c.color:'';
+      return `<button class="pill${a?' active':''}" data-f="${c.id}"
+        style="${bg?`background:${bg}`:''}${bc!=='transparent'?`;border-color:${bc}`:''}${tc?`;color:${tc}`:''};"
         onclick="setCat('${c.id}')">${c.label}</button>`;
-    }).join('') +
-    `<div class="pill-divider"></div>` +
-    monthPills.map(m => {
-      const a = S.monthFilter === m.id;
-      return `<button class="pill${a ? ' active' : ''}" data-f="${m.id}"
-        style="${a ? 'background:var(--text)' : ''}"
-        onclick="setMonth('${m.id}')">${m.label}</button>`;
+    }).join('')+
+    `<div class="pill-divider"></div>`+
+    monthPills.map(m=>{
+      const a=S.monthFilter===m.id;
+      return `<button class="pill${a?' active':''}" style="${a?'background:var(--text)':''}" onclick="setMonth('${m.id}')">${m.label}</button>`;
     }).join('');
 }
-function setCat(v) { S.catFilter = v; renderFilters(); applyFilter(); }
-function setMonth(v) { S.monthFilter = v; renderFilters(); applyFilter(); }
-function applyFilter() {
-  const q = S.search.toLowerCase();
-  document.querySelectorAll('.card').forEach(c => {
-    const t = S.tasks.find(x => x.id === c.dataset.id); if (!t) return;
-    const cat = S.catFilter === 'all' || t.type === S.catFilter;
-    const mon = S.monthFilter === 'all' || t.month === S.monthFilter;
-    const sq = !q || t.title.toLowerCase().includes(q) || (t.notes || '').toLowerCase().includes(q);
-    c.classList.toggle('filtered-out', !(cat && mon && sq));
+function setCat(v){S.catFilter=v;renderFilters();applyFilter();}
+function setMonth(v){S.monthFilter=v;renderFilters();applyFilter();}
+function applyFilter(){
+  const q=S.search.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    const t=S.tasks.find(x=>x.id===c.dataset.id);if(!t)return;
+    const cat=S.catFilter==='all'||t.type===S.catFilter;
+    const mon=S.monthFilter==='all'||t.month===S.monthFilter;
+    const sq=!q||t.title.toLowerCase().includes(q)||(t.hook||'').toLowerCase().includes(q)||(t.cta||'').toLowerCase().includes(q);
+    c.classList.toggle('filtered-out',!(cat&&mon&&sq));
   });
   updateCounts();
-  document.querySelectorAll('.month-group-label').forEach(lbl => {
-    const colId = lbl.closest('.col-body')?.id?.replace('cb-', '');
-    const month = lbl.dataset.month;
-    const cards = document.querySelectorAll(`#cb-${colId} .card[data-month="${month}"]`);
-    lbl.style.display = [...cards].some(c => !c.classList.contains('filtered-out')) ? '' : 'none';
+  document.querySelectorAll('.month-group-label').forEach(lbl=>{
+    const colId=lbl.closest('.col-body')?.id?.replace('cb-','');
+    const month=lbl.dataset.month;
+    const cards=document.querySelectorAll(`#cb-${colId} .card[data-month="${month}"]`);
+    lbl.style.display=[...cards].some(c=>!c.classList.contains('filtered-out'))?'':'none';
   });
 }
-function updateCounts() {
-  COLS.forEach(col => {
-    const el = document.getElementById('cnt-' + col.id); if (!el) return;
-    el.textContent = document.querySelectorAll(`#cb-${col.id} .card:not(.filtered-out)`).length;
+function updateCounts(){
+  COLS.forEach(col=>{
+    const el=document.getElementById('cnt-'+col.id);if(!el)return;
+    el.textContent=document.querySelectorAll(`#cb-${col.id} .card:not(.filtered-out)`).length;
   });
 }
-document.getElementById('si').addEventListener('input', e => { S.search = e.target.value; applyFilter(); });
+document.getElementById('si').addEventListener('input',e=>{S.search=e.target.value;applyFilter();});
 
 // ── RENDER ─────────────────────────────────────────
-function catColor(type) { return CATS[type] || '#8e8e93'; }
-function dueBadge(due, status) {
-  if (!due || status === 'complete') return '';
-  const now = new Date(); now.setHours(0, 0, 0, 0);
-  const d = new Date(due + 'T00:00:00');
-  const diff = Math.floor((d - now) / 86400000);
-  const label = diff === 0 ? 'Today' : diff === 1 ? 'Tomorrow' : diff < 0 ? `${-diff}d ago` : fmtDate(due);
-  const cls = diff < 0 ? 'due-over' : diff <= 3 ? 'due-soon' : 'due-ok';
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function catColor(type){return CATS[type]||'#8e8e93';}
+function fmtDate(iso){if(!iso)return '';const d=new Date(iso+'T00:00:00');return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
+function fmtDisplay(date){if(!date)return '';const p=date.split('/');return p.length>=3?`${p[0]}/${p[1]}`:date;}
+function dueBadge(due,status){
+  if(!due||status==='complete')return '';
+  const now=new Date();now.setHours(0,0,0,0);
+  const d=new Date(due+'T00:00:00');
+  const diff=Math.floor((d-now)/86400000);
+  const label=diff===0?'Today':diff===1?'Tomorrow':diff<0?`${-diff}d ago`:fmtDate(due);
+  const cls=diff<0?'due-over':diff<=3?'due-soon':'due-ok';
   return `<span class="due-badge ${cls}">${label}</span>`;
 }
-function fmtDate(iso) { if (!iso) return ''; const d = new Date(iso + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
-function fmtDisplay(date) { if (!date || date === 'NEWSLETTER' || date === 'LINKEDIN') return date || ''; const p = date.split('/'); return `${p[0]}/${p[1]}`; }
-function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
-function renderCard(t) {
-  const color = catColor(t.type);
-  const done = t.status === 'complete';
-  const dateStr = fmtDisplay(t.date);
-  return `<div class="card${done ? ' done-card' : ''}" data-id="${t.id}" data-month="${t.month || ''}"
+function renderCard(t){
+  const color=catColor(t.type);
+  const done=t.status==='complete';
+  const dateStr=fmtDisplay(t.date);
+  const hookShort=t.hook?t.hook.split('—')[0].trim():'';
+  return `<div class="card${done?' done-card':''}" data-id="${t.id}" data-month="${t.month||''}"
     draggable="true" onclick="cardClick(event,'${t.id}')"
     ondragstart="ds(event,'${t.id}')" ondragend="de(event)">
     <div class="card-top">
       <div style="flex:1">
-        ${dateStr ? `<div class="card-week">${esc(dateStr)}</div>` : ''}
+        ${dateStr?`<div class="card-date">${esc(dateStr)}</div>`:''}
         <div class="card-title">${esc(t.title)}</div>
       </div>
       <button class="menu-btn" onclick="openCtx(event,'${t.id}')">⋯</button>
     </div>
+    ${hookShort&&!done?`<div class="card-hook">${esc(hookShort)}</div>`:''}
     <div class="card-meta">
       <span class="cat-tag" style="background:${color}">${esc(t.type)}</span>
-      <span class="pri-badge pri-${t.priority}">${PRI_LBL[t.priority] || t.priority}</span>
-      ${dueBadge(t.due, t.status)}
+      <span class="pri-badge pri-${t.priority}">${PRI_LBL[t.priority]||t.priority}</span>
+      ${dueBadge(t.due,t.status)}
     </div>
   </div>`;
 }
 
-function renderBoard() {
-  const board = document.getElementById('board');
-  board.innerHTML = COLS.map(col => {
-    const tasks = S.tasks.filter(t => t.status === col.id)
-      .sort((a, b) => (PRI_ORD[a.priority] || 99) - (PRI_ORD[b.priority] || 99));
-    const isCollapsed = S.collapsed[col.id];
-    const byMonth = {};
-    tasks.forEach(t => { const m = t.month || 'OTHER'; if (!byMonth[m]) byMonth[m] = []; byMonth[m].push(t); });
-    const mOrder = [...MONTHS, 'OTHER'];
-    const groupedHtml = mOrder.filter(m => byMonth[m]).map(m => {
-      const label = m === 'OTHER' ? 'Other' : m.charAt(0) + m.slice(1).toLowerCase();
-      return `<div class="month-group-label" data-month="${m}">${label}</div>` + byMonth[m].map(renderCard).join('');
+function renderBoard(){
+  const board=document.getElementById('board');
+  board.innerHTML=COLS.map(col=>{
+    const tasks=S.tasks.filter(t=>t.status===col.id)
+      .sort((a,b)=>(PRI_ORD[a.priority]||99)-(PRI_ORD[b.priority]||99));
+    const isCollapsed=S.collapsed[col.id];
+    const byMonth={};
+    tasks.forEach(t=>{const m=t.month||'OTHER';if(!byMonth[m])byMonth[m]=[];byMonth[m].push(t);});
+    const mOrder=[...MONTHS,'OTHER'];
+    const groupedHtml=mOrder.filter(m=>byMonth[m]).map(m=>{
+      const label=m==='OTHER'?'Other':m.charAt(0)+m.slice(1).toLowerCase();
+      return `<div class="month-group-label" data-month="${m}">${label}</div>`+byMonth[m].map(renderCard).join('');
     }).join('');
-    return `<div class="column${isCollapsed ? ' collapsed' : ''}" id="col-${col.id}">
+    return `<div class="column${isCollapsed?' collapsed':''}" id="col-${col.id}">
       <div class="col-header" onclick="toggleCol('${col.id}')">
         <div class="col-title-wrap">
           <span class="col-emoji">${col.emoji}</span>
@@ -680,7 +669,7 @@ function renderBoard() {
         <div class="drop-zone" id="dz-${col.id}"
           ondragover="dov(event,'${col.id}')" ondragenter="den(event,'${col.id}')"
           ondragleave="dlv(event,'${col.id}')" ondrop="dp(event,'${col.id}')">
-          ${tasks.length === 0 ? `<div style="text-align:center;color:var(--text3);font-size:11px;padding:14px 8px">Drop tasks here</div>` : groupedHtml}
+          ${tasks.length===0?`<div style="text-align:center;color:var(--text3);font-size:11px;padding:14px 8px">Drop tasks here</div>`:groupedHtml}
         </div>
         <button class="add-btn" onclick="openModal('${col.id}')">＋ Add task</button>
       </div>
@@ -689,121 +678,136 @@ function renderBoard() {
   applyFilter();
 }
 
-function toggleCol(id) {
-  S.collapsed[id] = !S.collapsed[id];
-  saveLocal();
-  document.getElementById('col-' + id).classList.toggle('collapsed', !!S.collapsed[id]);
+function toggleCol(id){
+  S.collapsed[id]=!S.collapsed[id];saveLocal();
+  document.getElementById('col-'+id).classList.toggle('collapsed',!!S.collapsed[id]);
 }
 
 // ── DRAG & DROP ────────────────────────────────────
-let dragId = null;
-function ds(e, id) { dragId = id; e.dataTransfer.effectAllowed = 'move'; setTimeout(() => { const c = document.querySelector(`.card[data-id="${id}"]`); if (c) c.classList.add('dragging'); }, 0); }
-function de() { document.querySelectorAll('.card').forEach(c => c.classList.remove('dragging')); document.querySelectorAll('.drop-zone').forEach(z => z.classList.remove('drag-over')); dragId = null; }
-function dov(e) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; }
-function den(e, id) { e.preventDefault(); document.querySelectorAll('.drop-zone').forEach(z => z.classList.remove('drag-over')); document.getElementById('dz-' + id).classList.add('drag-over'); }
-function dlv(e, id) { if (!e.currentTarget.contains(e.relatedTarget)) document.getElementById('dz-' + id).classList.remove('drag-over'); }
-function dp(e, colId) {
-  e.preventDefault(); document.querySelectorAll('.drop-zone').forEach(z => z.classList.remove('drag-over'));
-  if (!dragId) return; const t = S.tasks.find(x => x.id === dragId); if (!t) return;
-  const was = t.status === 'complete'; t.status = colId;
-  if (colId === 'complete' && !was) celebrate(dragId);
-  save(); renderBoard();
+let dragId=null;
+function ds(e,id){dragId=id;e.dataTransfer.effectAllowed='move';setTimeout(()=>{const c=document.querySelector(`.card[data-id="${id}"]`);if(c)c.classList.add('dragging');},0);}
+function de(){document.querySelectorAll('.card').forEach(c=>c.classList.remove('dragging'));document.querySelectorAll('.drop-zone').forEach(z=>z.classList.remove('drag-over'));dragId=null;}
+function dov(e){e.preventDefault();e.dataTransfer.dropEffect='move';}
+function den(e,id){e.preventDefault();document.querySelectorAll('.drop-zone').forEach(z=>z.classList.remove('drag-over'));document.getElementById('dz-'+id).classList.add('drag-over');}
+function dlv(e,id){if(!e.currentTarget.contains(e.relatedTarget))document.getElementById('dz-'+id).classList.remove('drag-over');}
+function dp(e,colId){
+  e.preventDefault();document.querySelectorAll('.drop-zone').forEach(z=>z.classList.remove('drag-over'));
+  if(!dragId)return;const t=S.tasks.find(x=>x.id===dragId);if(!t)return;
+  const was=t.status==='complete';t.status=colId;
+  if(colId==='complete'&&!was)celebrate(dragId);
+  save();renderBoard();
 }
 
 // ── MODAL ──────────────────────────────────────────
-let editId = null, notesTimer = null;
-function openModal(defaultStatus) {
-  editId = null;
-  document.getElementById('mttl').textContent = 'New Task';
-  document.getElementById('ft').value = '';
-  document.getElementById('fcat').value = 'Inspire';
-  document.getElementById('fpri').value = 'mid';
-  document.getElementById('fst').value = defaultStatus || 'todo';
-  document.getElementById('fdue').value = '';
-  document.getElementById('fmonth').value = '';
-  document.getElementById('fweek').value = '';
-  document.getElementById('fnotes').value = '';
-  document.getElementById('mdone').style.display = 'none';
-  document.getElementById('msave').textContent = 'Save Task';
-  document.getElementById('ov').style.display = 'flex';
-  setTimeout(() => document.getElementById('ft').focus(), 50);
-  setupNotes();
+let editId=null;
+function openModal(defaultStatus){
+  editId=null;
+  document.getElementById('mttl').textContent='New Task';
+  document.getElementById('ft').value='';
+  document.getElementById('fcat').value='Inspire';
+  document.getElementById('fst').value=defaultStatus||'todo';
+  document.getElementById('fdue').value='';
+  document.getElementById('fmonth').value='';
+  document.getElementById('fformat').value='';
+  document.getElementById('fhook').value='';
+  document.getElementById('fcta').value='';
+  document.getElementById('faudit').value='';
+  document.getElementById('mdone').style.display='none';
+  document.getElementById('msave').textContent='Save Task';
+  document.getElementById('ov').style.display='flex';
+  setTimeout(()=>document.getElementById('ft').focus(),50);
 }
-function openEdit(id) {
-  const t = S.tasks.find(x => x.id === id); if (!t) return;
-  editId = id;
-  document.getElementById('mttl').textContent = 'Edit Task';
-  document.getElementById('ft').value = t.title;
-  document.getElementById('fcat').value = t.type;
-  document.getElementById('fpri').value = t.priority;
-  document.getElementById('fst').value = t.status;
-  document.getElementById('fdue').value = t.due || '';
-  document.getElementById('fmonth').value = t.month || '';
-  document.getElementById('fweek').value = t.week || '';
-  document.getElementById('fnotes').value = t.notes || '';
-  document.getElementById('mdone').style.display = 'inline-flex';
-  document.getElementById('mdone').textContent = t.status === 'complete' ? '↩ Un-complete' : '✅ Mark Complete';
-  document.getElementById('msave').textContent = 'Save Changes';
-  document.getElementById('ov').style.display = 'flex';
-  setupNotes();
+function openEdit(id){
+  const t=S.tasks.find(x=>x.id===id);if(!t)return;
+  editId=id;
+  document.getElementById('mttl').textContent='Edit Task';
+  document.getElementById('ft').value=t.title;
+  document.getElementById('fcat').value=t.type;
+  document.getElementById('fst').value=t.status;
+  document.getElementById('fdue').value=t.due||'';
+  document.getElementById('fmonth').value=t.month||'';
+  document.getElementById('fformat').value=t.format||'';
+  document.getElementById('fhook').value=t.hook||'';
+  document.getElementById('fcta').value=t.cta||'';
+  document.getElementById('faudit').value=t.audit||'';
+  document.getElementById('mdone').style.display='inline-flex';
+  document.getElementById('mdone').textContent=t.status==='complete'?'↩ Un-complete':'✅ Mark Complete';
+  document.getElementById('msave').textContent='Save Changes';
+  document.getElementById('ov').style.display='flex';
 }
-function setupNotes() {
-  const el = document.getElementById('fnotes');
-  el.oninput = () => { clearTimeout(notesTimer); notesTimer = setTimeout(() => { if (editId) { const t = S.tasks.find(x => x.id === editId); if (t) { t.notes = el.value; save(); } } }, 700); };
+function closeModal(){document.getElementById('ov').style.display='none';editId=null;}
+function ovClick(e){if(e.target===document.getElementById('ov'))closeModal();}
+function saveModal(){
+  const title=document.getElementById('ft').value.trim();if(!title){document.getElementById('ft').focus();return;}
+  const d={
+    title,
+    type:document.getElementById('fcat').value,
+    status:document.getElementById('fst').value,
+    due:document.getElementById('fdue').value,
+    month:document.getElementById('fmonth').value,
+    format:document.getElementById('fformat').value,
+    hook:document.getElementById('fhook').value,
+    cta:document.getElementById('fcta').value,
+    audit:document.getElementById('faudit').value,
+  };
+  d.priority=derivePriority(d.format);
+  if(editId){
+    const t=S.tasks.find(x=>x.id===editId);const was=t.status==='complete';
+    Object.assign(t,d);if(d.status==='complete'&&!was)celebrate(editId);
+  } else {
+    const nt={id:uid(),week:'',...d};S.tasks.push(nt);
+    if(d.status==='complete')celebrate(nt.id);
+  }
+  save();renderBoard();closeModal();
 }
-function closeModal() { document.getElementById('ov').style.display = 'none'; editId = null; clearTimeout(notesTimer); }
-function ovClick(e) { if (e.target === document.getElementById('ov')) closeModal(); }
-function saveModal() {
-  const title = document.getElementById('ft').value.trim(); if (!title) { document.getElementById('ft').focus(); return; }
-  const d = { title, type: document.getElementById('fcat').value, priority: document.getElementById('fpri').value, status: document.getElementById('fst').value, due: document.getElementById('fdue').value, month: document.getElementById('fmonth').value, week: document.getElementById('fweek').value, notes: document.getElementById('fnotes').value };
-  if (editId) { const t = S.tasks.find(x => x.id === editId); const was = t.status === 'complete'; Object.assign(t, d); if (d.status === 'complete' && !was) celebrate(editId); }
-  else { const nt = { id: uid(), ...d }; S.tasks.push(nt); if (d.status === 'complete') celebrate(nt.id); }
-  save(); renderBoard(); closeModal();
+function toggleDoneModal(){
+  if(!editId)return;const t=S.tasks.find(x=>x.id===editId);if(!t)return;
+  const was=t.status==='complete';t.status=was?'todo':'complete';
+  save();if(!was)celebrate(editId);renderBoard();closeModal();
 }
-function toggleDoneModal() {
-  if (!editId) return; const t = S.tasks.find(x => x.id === editId); if (!t) return;
-  const was = t.status === 'complete'; t.status = was ? 'todo' : 'complete';
-  save(); if (!was) celebrate(editId); renderBoard(); closeModal();
+function copyForClaude(){
+  const title=document.getElementById('ft').value.trim();
+  const type=document.getElementById('fcat').value;
+  const format=document.getElementById('fformat').value;
+  const hook=document.getElementById('fhook').value;
+  const cta=document.getElementById('fcta').value;
+  const audit=document.getElementById('faudit').value;
+  const month=document.getElementById('fmonth').value;
+  const due=document.getElementById('fdue').value;
+  let txt=`POST BRIEF\n${'─'.repeat(40)}\nPost Type: ${type}\nTitle: ${title}`;
+  if(month)txt+=`\nMonth: ${month}`;
+  if(due)txt+=`\nDue: ${fmtDate(due)}`;
+  if(format)txt+=`\n\nFormat: ${format}`;
+  if(hook)txt+=`\nHook: ${hook}`;
+  if(cta)txt+=`\nCTA: ${cta}`;
+  if(audit)txt+=`\n\nAudit / Notes:\n${audit}`;
+  navigator.clipboard.writeText(txt).then(()=>showToast('📋 Brief copied!'));
 }
-function copyForClaude() {
-  const title = document.getElementById('ft').value.trim();
-  const type = document.getElementById('fcat').value;
-  const priority = document.getElementById('fpri').value;
-  const status = document.getElementById('fst').value;
-  const month = document.getElementById('fmonth').value;
-  const due = document.getElementById('fdue').value;
-  const notes = document.getElementById('fnotes').value.trim();
-  let txt = `Post Type: ${type}\nTitle: ${title}\nPriority: ${PRI_LBL[priority] || priority}\nStatus: ${COLS.find(c => c.id === status)?.label || status}`;
-  if (month) txt += `\nMonth: ${month}`;
-  if (due) txt += `\nDue: ${fmtDate(due)}`;
-  if (notes) txt += `\n\n${notes}`;
-  navigator.clipboard.writeText(txt).then(() => showToast('📋 Copied for Claude!'));
-}
-function cardClick(e, id) { if (e.target.classList.contains('menu-btn')) return; openEdit(id); }
+function cardClick(e,id){if(e.target.classList.contains('menu-btn'))return;openEdit(id);}
 
 // ── CONTEXT MENU ───────────────────────────────────
-let ctxId = null; const ctxEl = document.getElementById('ctx');
-function openCtx(e, id) { e.stopPropagation(); ctxId = id; ctxEl.style.display = 'block'; let x = e.clientX, y = e.clientY; if (x + 170 > window.innerWidth) x = window.innerWidth - 175; if (y + 150 > window.innerHeight) y = window.innerHeight - 155; ctxEl.style.left = x + 'px'; ctxEl.style.top = y + 'px'; }
-function closeCtx() { ctxEl.style.display = 'none'; ctxId = null; }
-document.addEventListener('click', e => { if (!ctxEl.contains(e.target)) closeCtx(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeCtx(); } });
-function ctxEdit() { if (!ctxId) return; openEdit(ctxId); closeCtx(); }
-function ctxDup() { if (!ctxId) return; const t = S.tasks.find(x => x.id === ctxId); if (!t) return; S.tasks.push({ ...t, id: uid(), title: t.title + ' (copy)', status: 'todo' }); save(); renderBoard(); closeCtx(); }
-function ctxComplete() { if (!ctxId) return; const t = S.tasks.find(x => x.id === ctxId); if (!t) return; const was = t.status === 'complete'; t.status = was ? 'todo' : 'complete'; if (!was) celebrate(t.id); save(); renderBoard(); closeCtx(); }
-function ctxDel() { if (!ctxId) return; if (!confirm('Delete this task?')) return; S.tasks = S.tasks.filter(x => x.id !== ctxId); save(); renderBoard(); closeCtx(); }
+let ctxId=null;const ctxEl=document.getElementById('ctx');
+function openCtx(e,id){e.stopPropagation();ctxId=id;ctxEl.style.display='block';let x=e.clientX,y=e.clientY;if(x+170>window.innerWidth)x=window.innerWidth-175;if(y+150>window.innerHeight)y=window.innerHeight-155;ctxEl.style.left=x+'px';ctxEl.style.top=y+'px';}
+function closeCtx(){ctxEl.style.display='none';ctxId=null;}
+document.addEventListener('click',e=>{if(!ctxEl.contains(e.target))closeCtx();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeCtx();}});
+function ctxEdit(){if(!ctxId)return;openEdit(ctxId);closeCtx();}
+function ctxDup(){if(!ctxId)return;const t=S.tasks.find(x=>x.id===ctxId);if(!t)return;S.tasks.push({...t,id:uid(),title:t.title+' (copy)',status:'todo'});save();renderBoard();closeCtx();}
+function ctxComplete(){if(!ctxId)return;const t=S.tasks.find(x=>x.id===ctxId);if(!t)return;const was=t.status==='complete';t.status=was?'todo':'complete';if(!was)celebrate(t.id);save();renderBoard();closeCtx();}
+function ctxDel(){if(!ctxId)return;if(!confirm('Delete this task?'))return;S.tasks=S.tasks.filter(x=>x.id!==ctxId);save();renderBoard();closeCtx();}
 
 // ── CELEBRATION ────────────────────────────────────
-const AC = window.AudioContext || window.webkitAudioContext; let ac = null;
-function chime() { try { if (!ac) ac = new AC(); const ctx = ac; [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type = 'sine'; o.frequency.value = f; const t = ctx.currentTime + i * .1; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.16, t + .02); g.gain.exponentialRampToValueAtTime(.001, t + .38); o.start(t); o.stop(t + .42); }); } catch (e) {} }
-function confetti() { const cv = document.getElementById('cc'), ctx = cv.getContext('2d'); cv.width = window.innerWidth; cv.height = window.innerHeight; const COLORS = ['#8b5cf6', '#3b82f6', '#10b981', '#ec4899', '#f59e0b', '#f97316', '#14b8a6']; const ps = Array.from({ length: 120 }, () => ({ x: Math.random() * cv.width, y: -10 - Math.random() * 60, r: 3 + Math.random() * 6, color: COLORS[Math.floor(Math.random() * COLORS.length)], vx: (Math.random() - .5) * 5, vy: 3 + Math.random() * 5, a: Math.random() * Math.PI * 2, spin: (Math.random() - .5) * .18, rect: Math.random() > .5 })); let f = 0; function draw() { ctx.clearRect(0, 0, cv.width, cv.height); ps.forEach(p => { ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.fillStyle = p.color; if (p.rect) ctx.fillRect(-p.r, -p.r / 2, p.r * 2, p.r); else { ctx.beginPath(); ctx.arc(0, 0, p.r, 0, Math.PI * 2); ctx.fill(); } ctx.restore(); p.x += p.vx; p.y += p.vy; p.a += p.spin; p.vy += .07; }); if (++f < 110) requestAnimationFrame(draw); else ctx.clearRect(0, 0, cv.width, cv.height); } draw(); }
-function showToast(msg) { const el = document.getElementById('hype'); el.textContent = msg || HYPES[Math.floor(Math.random() * HYPES.length)]; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2500); }
-function celebrate(id) { confetti(); chime(); if (navigator.vibrate) navigator.vibrate([40, 20, 80]); showToast(); setTimeout(() => { const c = document.querySelector(`.card[data-id="${id}"]`); if (c) { c.classList.add('completing'); setTimeout(() => c.classList.remove('completing'), 550); } }, 40); }
+const AC=window.AudioContext||window.webkitAudioContext;let ac=null;
+function chime(){try{if(!ac)ac=new AC();const ctx=ac;[523.25,659.25,783.99,1046.5].forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.value=f;const t=ctx.currentTime+i*.1;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.16,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+.38);o.start(t);o.stop(t+.42);});}catch(e){}}
+function confetti(){const cv=document.getElementById('cc'),ctx=cv.getContext('2d');cv.width=window.innerWidth;cv.height=window.innerHeight;const COLORS=['#8b5cf6','#3b82f6','#10b981','#ec4899','#f59e0b','#f97316','#14b8a6'];const ps=Array.from({length:120},()=>({x:Math.random()*cv.width,y:-10-Math.random()*60,r:3+Math.random()*6,color:COLORS[Math.floor(Math.random()*COLORS.length)],vx:(Math.random()-.5)*5,vy:3+Math.random()*5,a:Math.random()*Math.PI*2,spin:(Math.random()-.5)*.18,rect:Math.random()>.5}));let f=0;function draw(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.fillStyle=p.color;if(p.rect)ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r);else{ctx.beginPath();ctx.arc(0,0,p.r,0,Math.PI*2);ctx.fill();}ctx.restore();p.x+=p.vx;p.y+=p.vy;p.a+=p.spin;p.vy+=.07;});if(++f<110)requestAnimationFrame(draw);else ctx.clearRect(0,0,cv.width,cv.height);}draw();}
+function showToast(msg){const el=document.getElementById('hype');el.textContent=msg||HYPES[Math.floor(Math.random()*HYPES.length)];el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
+function celebrate(id){confetti();chime();if(navigator.vibrate)navigator.vibrate([40,20,80]);showToast();setTimeout(()=>{const c=document.querySelector(`.card[data-id="${id}"]`);if(c){c.classList.add('completing');setTimeout(()=>c.classList.remove('completing'),550);}},40);}
 
-// ── EXPOSE TO WINDOW (required for inline onclick handlers in module script) ──
-Object.assign(window, {
-  openModal, closeModal, ovClick, saveModal, toggleDoneModal, copyForClaude,
-  setCat, setMonth, cardClick, openCtx, ds, de, dov, den, dlv, dp,
-  toggleCol, ctxEdit, ctxDup, ctxComplete, ctxDel
+// ── EXPOSE TO WINDOW ──────────────────────────────
+Object.assign(window,{
+  openModal,closeModal,ovClick,saveModal,toggleDoneModal,copyForClaude,
+  setCat,setMonth,cardClick,openCtx,ds,de,dov,den,dlv,dp,
+  toggleCol,ctxEdit,ctxDup,ctxComplete,ctxDel
 });
 </script>
 </body>
